@@ -31,7 +31,7 @@ class Pirate {
             string english, pirate;
             
             if (!fin.is_open()) cout << "The treasure map has torn!" << endl;
-            string entry;
+            fin.clear();//not sure what we are clearing but alright. alright. hour spent figuring this out. alright.
             //TODO: The way that an ifstream works is that it reads everything in the 
             //      csv file. 
             //      1) Create a while loop that does not terminate until the file
@@ -41,8 +41,9 @@ class Pirate {
             //      4) if the english word equals the word that is being passed,
             //         then close the file and return the pirate word
             //      5) otherwise, close the file and just return the word being passed
-            while (fin >> entry) {
-                cout << entry << endl;
+            while (getline(fin, english, ',')) {
+                getline(fin, pirate);
+                if (word == english) return pirate;
             }
             fin.close();
             return word;
@@ -51,6 +52,11 @@ class Pirate {
         void addToFile(string english, string pirate){
             //TODO: append the passed words to the csv file and close the file
             //      remember to delimit the words with a comma
+            ofstream fout(treasureMap, ios::app);
+            fout.open("pirate.csv");
+            fout.clear();
+            fout << '\n' << english << ',' << pirate << endl;
+            fout.close();
         }
 };
 #endif

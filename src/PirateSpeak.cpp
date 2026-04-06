@@ -47,20 +47,23 @@ void addWord() {
     Pirate wordLoot;
     string engWord = "";
     cout << "We hear you have a new word in the Queen's english for yer crewmates?" << endl;
-    cin >> engWord;
     while (cin.fail()) {
         cout << "Make em walk the plank! They've invented a new kind of mutiny!" << endl;
         cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
     }
+    getline(cin, engWord);
+    cin.clear();
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
     string parWord = "";
-    cout << "\nBlast it all laddie, what does it mean?" << endl;
-    cin >> engWord;
+    cout << "Blast it all laddie, what does it mean?" << endl;
     while (cin.fail()) {
         cout << "Make em walk the plank! They've hornswoggled us!" << endl;
         cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
     }
+    getline(cin, parWord);
     cout << "Ay... I see... " << engWord << " is how those foul blaggarts say " << parWord << "!\n"
         "Add this one to the word loot, me hearties!" << endl;
     wordLoot.addToFile(engWord, parWord);
@@ -72,9 +75,6 @@ void addWord() {
 //      3) call the object function called translateWord and pass the word as a parameter
 
 int main() {
-    Pirate cabinboy;
-    cabinboy.translateWord("hello");
-    /*
   int choice;
   do{
     choice = menu();
@@ -87,6 +87,5 @@ int main() {
         break;   
     }
   }while(choice != QUIT);
-  */
   return 0;
 }
