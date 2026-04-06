@@ -34,6 +34,8 @@ int menu() {
         }
         else { validating = false; }
     }
+    cin.clear();
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
     return choice;
 }
 
@@ -44,35 +46,64 @@ int menu() {
 //      3) prompt the user to enter the pirate translation
 //      4) call the object function called addToFile and pass both words as parameters
 void addWord() {
-    Pirate wordLoot;
+    Pirate wordChest;
     string engWord = "";
     cout << "We hear you have a new word in the Queen's english for yer crewmates?" << endl;
+    getline(cin, engWord);
     while (cin.fail()) {
         cout << "Make em walk the plank! They've invented a new kind of mutiny!" << endl;
         cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
     }
-    getline(cin, engWord);
     cin.clear();
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
     string parWord = "";
     cout << "Blast it all laddie, what does it mean?" << endl;
+    getline(cin, parWord);
     while (cin.fail()) {
         cout << "Make em walk the plank! They've hornswoggled us!" << endl;
         cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
     }
-    getline(cin, parWord);
     cout << "Ay... I see... " << engWord << " is how those foul blaggarts say " << parWord << "!\n"
-        "Add this one to the word loot, me hearties!" << endl;
-    wordLoot.addToFile(engWord, parWord);
+        "Add this one to the chest o' words, me hearties!" << endl;
+    wordChest.addToFile(engWord, parWord);
+    cin.clear();
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
 }
 
 //TODO: Create the translate() function. It takes no parameters and the return type is void
 //      1) create a Pirate object
 //      2) prompt the user to enter a word
 //      3) call the object function called translateWord and pass the word as a parameter
+void translate() {
+    cin.clear();
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    Pirate wordChest;
+    cout << "Trying to read those papers we looted?\n"
+        "Check the word chest. What's the word?" << endl;
+    string trans;
+    getline(cin, trans);
+    while (cin.fail()) {
+        cout << "You'll get the black spot for trying to steal our words!" << endl;
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    }
+    cin.clear();
+
+    string treasure = wordChest.translateWord(trans);
+    if (treasure == trans) {
+        cout << "Hah! An uneducated pirate! The pirate word for " << trans << " IS " << treasure << "!\n"
+            "...What's it mean...? Well.\n" <<
+            treasure << " means " << trans << " of course!" << endl;
+    }
+    else {
+        cout << "So " << trans << " is fancy for " << treasure << "!" << endl;
+    }
+    cin.clear();
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    return;
+}
 
 int main() {
   int choice;

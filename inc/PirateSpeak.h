@@ -55,7 +55,7 @@ class Pirate {
             ofstream fout(treasureMap, ios::app);
             fout.open("pirate.csv");
             fout.clear();
-            fout << '\n' << english << ',' << pirate << endl;
+            fout << english << ',' << pirate << endl;
             fout.close();
         }
 };
